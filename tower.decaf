@@ -12,7 +12,7 @@ def int max_balls_placed(int npegs)
 
     i = 0;
 
-    while (i < 50)
+    while (i < npegs)
     {
         top_balls[i] = 0;
         i = i + 1;
@@ -20,23 +20,27 @@ def int max_balls_placed(int npegs)
 
     i = 0;
 
-    while (i < npegs) //check each peg
+    while (true)
     {
-        if (top_balls[i] == 0)
+        while (i < npegs) //check each peg
         {
-            top_balls[i] = ball;
-            balls_dropped = balls_dropped + 1;
-        }
-        else
-        {
-            if (is_square(ball + top_balls[i]))
+            if (top_balls[i] == 0)
             {
                 top_balls[i] = ball;
                 balls_dropped = balls_dropped + 1;
             }
-        }
+            else
+            {
+                if (is_square(ball + top_balls[i]))
+                {
+                    top_balls[i] = ball;
+                    balls_dropped = balls_dropped + 1;
+                }
+            }
 
-        i = i + 1;
+            i = i + 1;
+        }
+        break;
     }
 
     return balls_dropped;
