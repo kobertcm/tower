@@ -24,13 +24,20 @@ def int max_balls_placed(int npegs)
     }
 
 
-    while (keep_going) // Go until we break
+    // Go until we no longer drop any balls
+    while (keep_going)
     {
+        // Update to the next ball
         ball = balls_dropped + 1;
+        // Ensure we start at peg 0
         i = 0;
+        // We have not dropped this ball (because we haven't check a peg)
         ball_was_dropped = false;
-        while (i < npegs && !ball_was_dropped) //check each peg
+
+        // Check each peg until we drop a ball; then move to the next ball
+        while (i < npegs && !ball_was_dropped)
         {
+            // If there are no balls on a peg, we can always drop a ball
             if (top_balls[i] == 0)
             {
                 top_balls[i] = ball;
@@ -39,6 +46,9 @@ def int max_balls_placed(int npegs)
             }
             else
             {
+                // Check that the current ball + the ball on the top of this
+                // peg are a perfect square -- if so, drop the ball.
+                // Otherwise, we failed to drop a ball on this peg.
                 if (is_square(ball + top_balls[i]))
                 {
                     top_balls[i] = ball;
@@ -50,8 +60,11 @@ def int max_balls_placed(int npegs)
                     ball_was_dropped = false;
                 }
             }
+            // Move on to the next peg
             i = i + 1;
         }
+
+        // If we didn't drop a ball on any pegs, we lose the game.
         if (!ball_was_dropped) {
             break;
         }
