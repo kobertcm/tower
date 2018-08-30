@@ -81,7 +81,9 @@ def bool is_square(int num)
 
     a = 1;
 
-    while (a < num)
+    // Use a slightly more efficient iteration than going all the way to
+    // num. There are probably better shortcuts, but this works well enough.
+    while (a < ((num / 2) + 1))
     {
         if ((a * a) == num)
         {
