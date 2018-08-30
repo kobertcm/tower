@@ -6,11 +6,16 @@ int top_balls[50];
 
 def int max_balls_placed(int npegs)
 {
+    bool keep_going;
+    bool ball_was_dropped;
     int balls_dropped;
     int ball;
     int i;
 
     i = 0;
+    balls_dropped = 0;
+    keep_going = true;
+    ball_was_dropped = false;
 
     while (i < npegs)
     {
@@ -18,16 +23,19 @@ def int max_balls_placed(int npegs)
         i = i + 1;
     }
 
-    i = 0;
 
-    while (true)
+    while (keep_going) // Go until we break
     {
-        while (i < npegs) //check each peg
+        ball = balls_dropped + 1;
+        i = 0;
+        ball_was_dropped = false;
+        while (i < npegs && !ball_was_dropped) //check each peg
         {
             if (top_balls[i] == 0)
             {
                 top_balls[i] = ball;
                 balls_dropped = balls_dropped + 1;
+                ball_was_dropped = true;
             }
             else
             {
@@ -35,12 +43,18 @@ def int max_balls_placed(int npegs)
                 {
                     top_balls[i] = ball;
                     balls_dropped = balls_dropped + 1;
+                    ball_was_dropped = true;
+                }
+                else
+                {
+                    ball_was_dropped = false;
                 }
             }
-
             i = i + 1;
         }
-        break;
+        if (!ball_was_dropped) {
+            break;
+        }
     }
 
     return balls_dropped;
@@ -52,7 +66,8 @@ def bool is_square(int num)
 
     a = 1;
 
-    while (a < num)
+    // Go from 1 to (num / 2) to check for roots
+    while (a < (num / 2))
     {
         if ((a * a) == num)
         {
@@ -62,7 +77,6 @@ def bool is_square(int num)
     }
     return false;
 }
-
 
 def void do_test(int npegs, int correct)
 {
