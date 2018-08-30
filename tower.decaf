@@ -1,5 +1,7 @@
 // tower trouble problem
 
+// Authors: Christy Kobert & Kyle Laker
+
 // Arrays must be declared globally
 // Just use 50 since it's larger than all test cases
 int top_balls[50];
