@@ -17,6 +17,8 @@ def int max_balls_placed(int npegs)
     keep_going = true;
     ball_was_dropped = false;
 
+    // Initialize the values for the pegs we are using for the game -- we
+    // don't care about anything past this.
     while (i < npegs)
     {
         top_balls[i] = 0;
@@ -79,8 +81,7 @@ def bool is_square(int num)
 
     a = 1;
 
-    // Go from 1 to (num / 2) to check for roots
-    while (a < (num / 2))
+    while (a < num)
     {
         if ((a * a) == num)
         {
